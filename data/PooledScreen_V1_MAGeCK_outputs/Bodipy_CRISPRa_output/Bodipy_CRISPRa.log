@@ -1,0 +1,73 @@
+INFO  @ Wed, 25 Oct 2023 13:56:42: Parameters: /Users/rwang/miniconda3/bin/mageck test -k CRISPRa_Bodipy_counts_subset.txt -t 2,3 -c 0,1 -n Bodipy_CRISPRa_output/Bodipy_CRISPRa 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loading count table from CRISPRa_Bodipy_counts_subset.txt  
+INFO  @ Wed, 25 Oct 2023 13:56:42: Processing 1 lines.. 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loaded 1130 records. 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Setting up the visualization module... 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Setting up the visualization module... 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Given sample labels: 2,3 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Converted index: 2 3 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Treatment samples:2,3 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Treatment sample index:2,3 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Given sample labels: 0,1 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Converted index: 0 1 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Control samples:0,1 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Control sample index:0,1 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Initial (total) size factor: 0.9527005730575404 0.9089210419047237 1.094515785097366 1.0678049096418647 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Median factor: 0.9576297705384353 0.899763936645773 1.089941536871956 1.0601551700593401 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Final size factor: 0.9576297705384353 0.899763936645773 1.089941536871956 1.0601551700593401 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Detecting outliers from variance estimation.. Avg read count:[706.2152559941123], Var: [40583.69574234958] 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Skipping 1 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Wed, 25 Oct 2023 13:56:42: Adjusted model: 1.9704351000530138	0 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Wed, 25 Oct 2023 13:56:42: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Wed, 25 Oct 2023 13:56:43: lower test FDR cutoff: 0.009734513274336283 
+DEBUG @ Wed, 25 Oct 2023 13:56:43: higher test FDR cutoff: 0.0008849557522123894 
+INFO  @ Wed, 25 Oct 2023 13:56:43: Running command: RRA -i Bodipy_CRISPRa_output/Bodipy_CRISPRa.plow.txt -o Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.low.txt -p 0.05 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 25 Oct 2023 13:56:43: Command message: 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Skipping gene na for permutation ... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Reading input file... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Computing lo-values for each group... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Computing false discovery rate... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Number of genes under FDR adjustment: 207 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   Saving to output file... 
+INFO  @ Wed, 25 Oct 2023 13:56:43:   RRA completed. 
+INFO  @ Wed, 25 Oct 2023 13:56:43:    
+INFO  @ Wed, 25 Oct 2023 13:56:43: End command message. 
+INFO  @ Wed, 25 Oct 2023 13:56:43: Running command: RRA -i Bodipy_CRISPRa_output/Bodipy_CRISPRa.phigh.txt -o Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.high.txt -p 0.0008849557522123894 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 25 Oct 2023 13:56:44: Command message: 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Skipping gene na for permutation ... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Reading input file... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Computing lo-values for each group... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Computing false discovery rate... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Number of genes under FDR adjustment: 207 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   Saving to output file... 
+INFO  @ Wed, 25 Oct 2023 13:56:44:   RRA completed. 
+INFO  @ Wed, 25 Oct 2023 13:56:44:    
+INFO  @ Wed, 25 Oct 2023 13:56:44: End command message. 
+DEBUG @ Wed, 25 Oct 2023 13:56:44: Sorting the merged items by negative selection... 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Loading top 10 genes from Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.low.txt: S100A4,LAPTM5,ADAM10,LPAR2,CR1,MERTK,NFATC1,ABCA1,TLR4,HEXB 
+DEBUG @ Wed, 25 Oct 2023 13:56:44: Column index:3 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Loading top 10 genes from Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.high.txt: CLEC2D,C3AR1,LPL,C1QC,GRN,MS4A4A,CD52,LRP1B,Non,FPR2 
+DEBUG @ Wed, 25 Oct 2023 13:56:44: Column index:9 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Running command: rm Bodipy_CRISPRa_output/Bodipy_CRISPRa.plow.txt 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Running command: rm Bodipy_CRISPRa_output/Bodipy_CRISPRa.phigh.txt 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Running command: rm Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.low.txt 
+INFO  @ Wed, 25 Oct 2023 13:56:44: Running command: rm Bodipy_CRISPRa_output/Bodipy_CRISPRa.gene.high.txt 

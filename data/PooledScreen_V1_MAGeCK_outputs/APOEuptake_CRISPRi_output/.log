@@ -1,0 +1,73 @@
+INFO  @ Tue, 20 Jun 2023 14:17:54: Parameters: /Users/rwang/miniconda3/bin/mageck test -k APOEuptake_CRISPRi_compiled_counts.txt -t 0,1 -c 2,3 -n APOEuptake_CRISPRi_output/ 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loading count table from APOEuptake_CRISPRi_compiled_counts.txt  
+INFO  @ Tue, 20 Jun 2023 14:17:54: Processing 1 lines.. 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loaded 1130 records. 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Setting up the visualization module... 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Setting up the visualization module... 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Given sample labels: 0,1 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Converted index: 0 1 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Treatment samples:0,1 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Treatment sample index:0,1 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Given sample labels: 2,3 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Converted index: 2 3 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Control samples:2,3 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Control sample index:2,3 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Initial (total) size factor: 0.9865817490361473 1.1774074979919567 0.8324575822392176 1.068589305398254 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Median factor: 1.0067429814762192 1.1762638255464184 0.8146861601790836 1.0415698860110492 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Final size factor: 1.0067429814762192 1.1762638255464184 0.8146861601790836 1.0415698860110492 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Detecting outliers from variance estimation.. Avg read count:[695.7737227615321], Var: [175604.91633645087] 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Skipping 3 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: Adjusted model: 2.239975537046326	0 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: lower test FDR cutoff: 0.4230088495575221 
+DEBUG @ Tue, 20 Jun 2023 14:17:54: higher test FDR cutoff: 0.0008849557522123894 
+INFO  @ Tue, 20 Jun 2023 14:17:54: Running command: RRA -i APOEuptake_CRISPRi_output/.plow.txt -o APOEuptake_CRISPRi_output/.gene.low.txt -p 0.4230088495575221 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:17:56: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:17:56:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:17:56:    
+INFO  @ Tue, 20 Jun 2023 14:17:56: End command message. 
+INFO  @ Tue, 20 Jun 2023 14:17:56: Running command: RRA -i APOEuptake_CRISPRi_output/.phigh.txt -o APOEuptake_CRISPRi_output/.gene.high.txt -p 0.0008849557522123894 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:17:57: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:17:57:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:17:57:    
+INFO  @ Tue, 20 Jun 2023 14:17:57: End command message. 
+DEBUG @ Tue, 20 Jun 2023 14:17:57: Sorting the merged items by negative selection... 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Loading top 10 genes from APOEuptake_CRISPRi_output/.gene.low.txt: IL1R2,IL6R,CD52,ACTB,CD1D,CD68,LDLR,ABCA1,VLDLR,CD80 
+DEBUG @ Tue, 20 Jun 2023 14:17:57: Column index:3 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Loading top 10 genes from APOEuptake_CRISPRi_output/.gene.high.txt: IL15,IRF8,CLEC2B,C9orf72,TLR7,P2RY12,CLIC1,CD86,LRP6,LRP1B 
+DEBUG @ Tue, 20 Jun 2023 14:17:57: Column index:9 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Running command: rm APOEuptake_CRISPRi_output/.plow.txt 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Running command: rm APOEuptake_CRISPRi_output/.phigh.txt 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Running command: rm APOEuptake_CRISPRi_output/.gene.low.txt 
+INFO  @ Tue, 20 Jun 2023 14:17:57: Running command: rm APOEuptake_CRISPRi_output/.gene.high.txt 

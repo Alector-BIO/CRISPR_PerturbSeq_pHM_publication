@@ -1,0 +1,72 @@
+INFO  @ Tue, 20 Jun 2023 14:39:07: Parameters: /Users/rwang/miniconda3/bin/mageck test -k BafilomycinA1_CRISPRa_compiled_counts.txt -t 0,1 -c 2,3 -n BafA1_CRISPRa_output/BafA1_CRISPRa 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loading count table from BafilomycinA1_CRISPRa_compiled_counts.txt  
+INFO  @ Tue, 20 Jun 2023 14:39:07: Processing 1 lines.. 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loaded 1130 records. 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Setting up the visualization module... 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Setting up the visualization module... 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Given sample labels: 0,1 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Converted index: 0 1 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Treatment samples:0,1 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Treatment sample index:0,1 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Given sample labels: 2,3 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Converted index: 2 3 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Control samples:2,3 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Control sample index:2,3 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Initial (total) size factor: 1.0716955816483875 0.8507738956989543 0.8580224612454266 1.3773571146685883 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Median factor: 1.051648142379742 0.8319074760948261 0.8461706308832316 1.3561281475710978 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Final size factor: 1.051648142379742 0.8319074760948261 0.8461706308832316 1.3561281475710978 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Detecting outliers from variance estimation.. Avg read count:[688.6557724131749], Var: [13476.43857397952] 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: Adjusted model: 2.232478859246908	0 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: lower test FDR cutoff: 0.2672566371681416 
+DEBUG @ Tue, 20 Jun 2023 14:39:07: higher test FDR cutoff: 0.01 
+INFO  @ Tue, 20 Jun 2023 14:39:07: Running command: RRA -i BafA1_CRISPRa_output/BafA1_CRISPRa.plow.txt -o BafA1_CRISPRa_output/BafA1_CRISPRa.gene.low.txt -p 0.2672566371681416 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:39:09: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:39:09:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:39:09:    
+INFO  @ Tue, 20 Jun 2023 14:39:09: End command message. 
+INFO  @ Tue, 20 Jun 2023 14:39:09: Running command: RRA -i BafA1_CRISPRa_output/BafA1_CRISPRa.phigh.txt -o BafA1_CRISPRa_output/BafA1_CRISPRa.gene.high.txt -p 0.01 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:39:10: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:39:10:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:39:10:    
+INFO  @ Tue, 20 Jun 2023 14:39:10: End command message. 
+DEBUG @ Tue, 20 Jun 2023 14:39:10: Sorting the merged items by negative selection... 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Loading top 10 genes from BafA1_CRISPRa_output/BafA1_CRISPRa.gene.low.txt: FPR2,FCGR2A,PLAUR,SELPLG,TREM1,ITGAX,CD19,NLRP3,HLA-DRB5,TLR4 
+DEBUG @ Tue, 20 Jun 2023 14:39:10: Column index:3 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Loading top 10 genes from BafA1_CRISPRa_output/BafA1_CRISPRa.gene.high.txt: SPI1,TGFBR3,LPAR2,IL15RA,CSF1R,AIF1,SORL1,MERTK,TGFBR2,CD52 
+DEBUG @ Tue, 20 Jun 2023 14:39:10: Column index:9 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Running command: rm BafA1_CRISPRa_output/BafA1_CRISPRa.plow.txt 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Running command: rm BafA1_CRISPRa_output/BafA1_CRISPRa.phigh.txt 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Running command: rm BafA1_CRISPRa_output/BafA1_CRISPRa.gene.low.txt 
+INFO  @ Tue, 20 Jun 2023 14:39:10: Running command: rm BafA1_CRISPRa_output/BafA1_CRISPRa.gene.high.txt 

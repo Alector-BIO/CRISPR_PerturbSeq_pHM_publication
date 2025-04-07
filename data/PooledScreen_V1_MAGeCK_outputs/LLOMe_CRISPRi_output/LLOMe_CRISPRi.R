@@ -1,0 +1,930 @@
+pdf(file='LLOMe_CRISPRi.pdf',width=4.5,height=4.5);
+gstable=read.table('LLOMe_CRISPRi.gene_summary.txt',header=T)
+# 
+#
+# parameters
+# Do not modify the variables beginning with "__"
+
+# gstablename='__GENE_SUMMARY_FILE__'
+startindex=3
+# outputfile='__OUTPUT_FILE__'
+targetgenelist=c("IRF8","P2RY6","VCP","LYZ","GPNMB","TARDBP","VLDLR","CTSB","CD300LB","CTLA4")
+# samplelabel=sub('.\\w+.\\w+$','',colnames(gstable)[startindex]);
+samplelabel='2,3_vs_0,1 neg.'
+
+
+# You need to write some codes in front of this code:
+# gstable=read.table(gstablename,header=T)
+# pdf(file=outputfile,width=6,height=6)
+
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+######
+# function definition
+
+plotrankedvalues<-function(val, tglist, ...){
+  
+  plot(val,log='y',ylim=c(max(val),min(val)),type='l',lwd=2, ...)
+  if(length(tglist)>0){
+    for(i in 1:length(tglist)){
+      targetgene=tglist[i];
+      tx=which(names(val)==targetgene);ty=val[targetgene];
+      points(tx,ty,col=colors[(i %% length(colors)) ],cex=2,pch=20)
+      # text(tx+50,ty,targetgene,col=colors[i])
+    }
+    legend('topright',tglist,pch=20,pt.cex = 2,cex=1,col=colors)
+  }
+}
+
+
+
+plotrandvalues<-function(val,targetgenelist, ...){
+  # choose the one with the best distance distribution
+  
+  mindiffvalue=0;
+  randval=val;
+  for(i in 1:20){
+    randval0=sample(val)
+    vindex=sort(which(names(randval0) %in% targetgenelist))
+    if(max(vindex)>0.9*length(val)){
+      # print('pass...')
+      next;
+    }
+    mindiffind=min(diff(vindex));
+    if (mindiffind > mindiffvalue){
+      mindiffvalue=mindiffind;
+      randval=randval0;
+      # print(paste('Diff: ',mindiffvalue))
+    }
+  }
+  plot(randval,log='y',ylim=c(max(randval),min(randval)),pch=20,col='grey', ...)
+  
+  if(length(targetgenelist)>0){
+    for(i in 1:length(targetgenelist)){
+      targetgene=targetgenelist[i];
+      tx=which(names(randval)==targetgene);ty=randval[targetgene];
+      points(tx,ty,col=colors[(i %% length(colors)) ],cex=2,pch=20)
+      text(tx+50,ty,targetgene,col=colors[i])
+    }
+  }
+  
+}
+
+
+
+
+# set.seed(1235)
+
+
+
+pvec=gstable[,startindex]
+names(pvec)=gstable[,'id']
+pvec=sort(pvec);
+
+plotrankedvalues(pvec,targetgenelist,xlab='Genes',ylab='RRA score',main=paste('Distribution of RRA scores in \\n',samplelabel))
+
+# plotrandvalues(pvec,targetgenelist,xlab='Genes',ylab='RRA score',main=paste('Distribution of RRA scores in \\n',samplelabel))
+
+
+pvec=gstable[,startindex+1]
+names(pvec)=gstable[,'id']
+pvec=sort(pvec);
+
+plotrankedvalues(pvec,targetgenelist,xlab='Genes',ylab='p value',main=paste('Distribution of p values in \\n',samplelabel))
+
+# plotrandvalues(pvec,targetgenelist,xlab='Genes',ylab='p value',main=paste('Distribution of p values in \\n',samplelabel))
+
+
+
+# you need to write after this code:
+# dev.off()
+
+
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(633.1102851504984,651.1061885908739,776.0451598278427,639.6981298016373),c(645.1925425006988,745.7488108894128,546.738652578596,492.88216558486806),c(1077.7373556378714,1348.657367754179,1010.7471143064835,980.52090387628),c(565.4496439893765,588.887427635353,739.1762704269835,552.657236730267),c(660.8994770559592,625.6928918625625,534.1492757100099,634.4547025081812))
+targetgene="IRF8"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(1261.3876673609168,1423.1446167854363,963.9865716517351,1030.8578058934581),c(668.1488314660794,747.5014520430894,812.914049228702,707.8626846165658),c(780.5138248229428,773.7910693482391,755.3626121151656,785.4654085597153),c(689.8968946964401,707.1907055085265,740.0755116318825,787.5627794770977),c(810.7194681984436,893.8469883750894,696.9119337967301,704.7166282404922))
+targetgene="P2RY6"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(441.0023932823128,449.55245591805965,426.24033112212913,440.44789265030767),c(494.1643256231944,515.2764991809338,376.7820648526838,362.8451687071582),c(799.8454365832632,779.9253133861074,784.1383306719338,730.9337647077724),c(315.3469168402292,311.09380477760465,315.63366291955134,247.48976825112524),c(351.5936888908302,366.30200111841896,344.40938147631954,308.31352485521535))
+targetgene="VCP"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(733.3930211571613,828.9992656890535,627.6703610195066,685.8402899840505),c(618.611576330258,618.6823272478559,616.8794665607186,615.5783642517395),c(849.3826917190847,828.1229451122151,629.4688434293046,737.2258774599197),c(538.8686778189357,596.7743128268979,622.2749137901126,592.5072841605329),c(642.7760910306587,740.4908874283828,780.5413658523378,616.6270497104307))
+targetgene="LYZ"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(758.7657615925821,857.0415241478797,832.6973557364801,738.2745629186109),c(715.2696351318608,814.1018158828019,650.1513911419818,654.3797262233142),c(672.9817344061596,732.6040022368379,552.1340998079901,591.4585987018417),c(592.0306101598172,546.8240399471134,657.3453207811739,636.5520734255637),c(859.048497599245,935.9103760633288,964.8858128566341,894.528696263601))
+targetgene="GPNMB"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(701.9791520466405,743.1198491588978,902.8381697186027,664.8665808102263),c(530.4110976737954,539.8134753324069,689.7180041575381,609.2862514995923),c(714.0614093968408,722.9644758916164,587.2045067990513,531.6835275564428),c(854.2155946591648,769.4094664640475,868.6670039324404,882.9931562179977),c(590.8223844247972,664.2509972434488,573.7158887255662,714.154797368713))
+targetgene="TARDBP"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(763.5986645326623,745.7488108894128,832.6973557364801,821.1207141552164),c(807.0947909933835,720.3355141611014,595.2976776431424,607.1888805822098),c(658.4830255859191,641.4666622456523,696.0126925918311,660.6718389754615),c(775.6809218828625,789.5648397313289,1029.6311796093626,859.9220761267911),c(819.1770483435838,843.8967154953049,895.6442400794106,882.9931562179977))
+targetgene="VLDLR"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(645.1925425006988,741.3672080052212,602.4916072823344,582.0204295736208),c(563.0331925193364,612.5480832099877,463.1092205229884,556.8519785650318),c(798.6372108482433,910.4970793350175,756.2618533200646,718.3495392034779),c(705.6038292517005,588.0111070585147,538.645481734505,590.4099132431505),c(563.0331925193364,558.2162074460117,524.2576224561209,453.03211815460213))
+targetgene="CTSB"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(855.4238203941849,912.2497204886942,748.1686824759735,673.256064479756),c(984.7039740413287,871.0626533772929,936.1100942998659,879.8470998419241),c(821.5934998136239,741.3672080052212,704.1058634359222,675.3534353971384),c(749.0999557124218,779.9253133861074,974.7774661105232,868.3115597963208),c(798.6372108482433,860.5468064552331,889.3495516451176,756.1022157163615))
+targetgene="CD300LB"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(730.9765696871212,636.2087387846224,498.1796275140497,587.2638568670768),c(631.9020594154783,643.219303399329,602.4916072823344,574.6796313627824),c(723.727215277001,637.0850593614607,724.7884111485994,706.8139991578746),c(676.6064116112196,665.1273178202871,594.3984364382434,726.7390228730076),c(751.5164071824619,765.0278635798559,826.4026673021871,687.9376609014329))
+targetgene="CTLA4"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+# 
+#
+# parameters
+# Do not modify the variables beginning with "__"
+
+# gstablename='__GENE_SUMMARY_FILE__'
+startindex=9
+# outputfile='__OUTPUT_FILE__'
+targetgenelist=c("IL6R","IL15","IL2RA","IL21R","LRP1","LRRK2","ABCA7","C1QB","ABCA1","NPC2")
+# samplelabel=sub('.\\w+.\\w+$','',colnames(gstable)[startindex]);
+samplelabel='2,3_vs_0,1 pos.'
+
+
+# You need to write some codes in front of this code:
+# gstable=read.table(gstablename,header=T)
+# pdf(file=outputfile,width=6,height=6)
+
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+######
+# function definition
+
+plotrankedvalues<-function(val, tglist, ...){
+  
+  plot(val,log='y',ylim=c(max(val),min(val)),type='l',lwd=2, ...)
+  if(length(tglist)>0){
+    for(i in 1:length(tglist)){
+      targetgene=tglist[i];
+      tx=which(names(val)==targetgene);ty=val[targetgene];
+      points(tx,ty,col=colors[(i %% length(colors)) ],cex=2,pch=20)
+      # text(tx+50,ty,targetgene,col=colors[i])
+    }
+    legend('topright',tglist,pch=20,pt.cex = 2,cex=1,col=colors)
+  }
+}
+
+
+
+plotrandvalues<-function(val,targetgenelist, ...){
+  # choose the one with the best distance distribution
+  
+  mindiffvalue=0;
+  randval=val;
+  for(i in 1:20){
+    randval0=sample(val)
+    vindex=sort(which(names(randval0) %in% targetgenelist))
+    if(max(vindex)>0.9*length(val)){
+      # print('pass...')
+      next;
+    }
+    mindiffind=min(diff(vindex));
+    if (mindiffind > mindiffvalue){
+      mindiffvalue=mindiffind;
+      randval=randval0;
+      # print(paste('Diff: ',mindiffvalue))
+    }
+  }
+  plot(randval,log='y',ylim=c(max(randval),min(randval)),pch=20,col='grey', ...)
+  
+  if(length(targetgenelist)>0){
+    for(i in 1:length(targetgenelist)){
+      targetgene=targetgenelist[i];
+      tx=which(names(randval)==targetgene);ty=randval[targetgene];
+      points(tx,ty,col=colors[(i %% length(colors)) ],cex=2,pch=20)
+      text(tx+50,ty,targetgene,col=colors[i])
+    }
+  }
+  
+}
+
+
+
+
+# set.seed(1235)
+
+
+
+pvec=gstable[,startindex]
+names(pvec)=gstable[,'id']
+pvec=sort(pvec);
+
+plotrankedvalues(pvec,targetgenelist,xlab='Genes',ylab='RRA score',main=paste('Distribution of RRA scores in \\n',samplelabel))
+
+# plotrandvalues(pvec,targetgenelist,xlab='Genes',ylab='RRA score',main=paste('Distribution of RRA scores in \\n',samplelabel))
+
+
+pvec=gstable[,startindex+1]
+names(pvec)=gstable[,'id']
+pvec=sort(pvec);
+
+plotrankedvalues(pvec,targetgenelist,xlab='Genes',ylab='p value',main=paste('Distribution of p values in \\n',samplelabel))
+
+# plotrandvalues(pvec,targetgenelist,xlab='Genes',ylab='p value',main=paste('Distribution of p values in \\n',samplelabel))
+
+
+
+# you need to write after this code:
+# dev.off()
+
+
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(651.2336711757989,650.2298680140356,595.2976776431424,690.0350318188154),c(1068.0715497577112,1328.5019944868975,2492.6966199800463,1853.0272055073658),c(613.7786733901779,631.8271359004308,676.229386084053,557.900664023723),c(594.4470616298573,564.35045148388,504.47431594834273,523.2940438869131),c(722.518989541981,769.4094664640475,644.7559439125878,751.9074738815966))
+targetgene="IL6R"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(726.1436667470412,753.6356960809577,741.8739940416805,733.0311356251549),c(763.5986645326623,810.5965335754487,836.2943205560762,726.7390228730076),c(666.9406057310595,786.9358780008139,786.8360542866308,722.5442810382427),c(728.5601182170813,702.809102624335,738.2770292220845,752.9561593402879),c(1336.2976629321588,1220.7145635357838,1662.6969878582631,2074.2998372912107))
+targetgene="IL15"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(639.1514138255986,595.8979922500596,783.2390894670348,713.1061119100219),c(855.4238203941849,930.6524526022989,835.3950793511772,745.6153611294494),c(714.0614093968408,673.8905235886702,641.1589790929917,648.087613471167),c(544.9098064940358,492.49216418313745,632.1665670440017,610.3349369582835),c(720.102538071941,715.0775907000715,663.6400092154669,691.0837172775065))
+targetgene="IL2RA"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(799.8454365832632,838.638792034275,812.914049228702,747.7127320468318),c(730.9765696871212,657.2404326287422,773.3474362131457,682.6942336079768),c(525.5781947337153,500.3790493746824,472.1016325719785,543.219067602046),c(758.7657615925821,864.9284093394247,1287.7134054153776,881.9444707593065),c(1152.6473512091136,987.6132900967899,1091.678822747394,1083.2920788280185))
+targetgene="IL21R"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(874.7554321545055,827.2466245353768,790.4330191062268,873.5549870897768),c(582.3648042796569,657.2404326287422,883.9541044157235,786.5140940184065),c(642.7760910306587,753.6356960809577,635.7635318635977,717.3008537447868),c(599.2799645699374,474.0894320695327,526.9553460708179,539.0243257672812),c(926.709138760367,940.2919789475204,825.5034260972881,691.0837172775065))
+targetgene="LRP1"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(767.2233417377223,956.0657493306103,1272.4263049320944,998.3485566740306),c(653.650122645839,663.3746766666104,663.6400092154669,628.162589756034),c(728.5601182170813,767.6568253103709,690.6172453624371,705.7653136991835),c(570.2825469294565,564.35045148388,615.9802253558195,636.5520734255637),c(1124.8581593036527,1169.0116495023228,1113.2606116649702,1068.6104824063416))
+targetgene="LRRK2"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(796.2207593782032,772.0384281945625,803.9216371797119,937.5248000699405),c(1062.030421082611,1041.9451658607659,1219.371073843053,1432.504336572191),c(743.0588270373216,807.0912512680953,785.0375718768328,728.83639379039),c(762.3904387976422,755.3883372346343,804.8208783846109,807.4878031922307),c(588.4059329547571,711.5723083927181,671.733180059558,708.9113700752571))
+targetgene="ABCA7"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(512.2877116484949,526.6686666798321,459.5122557033924,600.8967678300626),c(780.5138248229428,871.9389739541313,1102.4697172061822,968.9853638306768),c(605.3210932450377,538.0608341787303,609.6855369215265,593.5559696192241),c(842.1333373089645,1006.0160222103947,1035.0266268387566,955.3524528676911),c(732.1847954221413,780.8016339629456,650.1513911419818,685.8402899840505))
+targetgene="C1QB"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(593.2388358948373,581.8768630206464,597.0961600529404,602.9941387474449),c(601.6964160399775,647.6009062835207,803.9216371797119,758.1995866337438),c(668.1488314660794,680.9010882033768,733.7808231975894,701.5705718644186),c(641.5678652956386,648.4772268603589,604.2900896921325,665.9152662689175),c(650.0254454407789,706.3143849316882,728.3853759681954,665.9152662689175))
+targetgene="ABCA1"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+
+# parameters
+# Do not modify the variables beginning with "__"
+targetmat=list(c(861.4649490692851,811.472854152287,871.3647275471374,772.8811830554208),c(828.8428542237441,854.4125624173648,883.0548632108245,839.9970524116582),c(581.1565785446369,615.1770449405027,676.229386084053,668.0126371862999),c(517.120614588575,511.77121687358056,637.5620142733957,657.5257825993879),c(700.7709263116204,655.4877914750655,802.1231547699139,714.154797368713))
+targetgene="NPC2"
+collabel=c("TRE-KRAB-7d-dox-untreated-rd1_S9_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-untreated-rd2_S15_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd2_S16_L001_R1_001-clipped-trimmed-aligned-counts","TRE-KRAB-7d-dox-llome-100-rd1_S10_L001_R1_001-clipped-trimmed-aligned-counts")
+
+# set up color using RColorBrewer
+#library(RColorBrewer)
+#colors <- brewer.pal(length(targetgenelist), "Set1")
+
+colors=c( "#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00",  "#A65628", "#F781BF",
+          "#999999", "#66C2A5", "#FC8D62", "#8DA0CB", "#E78AC3", "#A6D854", "#FFD92F", "#E5C494", "#B3B3B3", 
+          "#8DD3C7", "#FFFFB3", "#BEBADA", "#FB8072", "#80B1D3", "#FDB462", "#B3DE69", "#FCCDE5",
+          "#D9D9D9", "#BC80BD", "#CCEBC5", "#FFED6F")
+
+
+## code
+
+targetmatvec=unlist(targetmat)+1
+yrange=range(targetmatvec[targetmatvec>0]);
+# yrange[1]=1; # set the minimum value to 1
+for(i in 1:length(targetmat)){
+  vali=targetmat[[i]]+1;
+  if(i==1){
+    plot(1:length(vali),vali,type='b',las=1,pch=20,main=paste('sgRNAs in',targetgene),ylab='Read counts',xlab='Samples',xlim=c(0.7,length(vali)+0.3),ylim = yrange,col=colors[(i %% length(colors))],xaxt='n',log='y')
+    axis(1,at=1:length(vali),labels=(collabel),las=2)
+    # lines(0:100,rep(1,101),col='black');
+  }else{
+    lines(1:length(vali),vali,type='b',pch=20,col=colors[(i %% length(colors))])
+  }
+}
+
+
+
+dev.off()
+Sweave("LLOMe_CRISPRi_summary.Rnw");
+library(tools);
+
+texi2dvi("LLOMe_CRISPRi_summary.tex",pdf=TRUE);
+

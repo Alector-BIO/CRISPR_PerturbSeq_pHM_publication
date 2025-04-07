@@ -1,0 +1,73 @@
+INFO  @ Thu, 22 Jun 2023 10:27:23: Parameters: /Users/rwang/miniconda3/bin/mageck test -k Differentiation_CRISPRa_compiled_counts.txt -t 1,2 -c 0,3 -n Diff_CRISPRa_output/Diff_CRISPRa 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loading count table from Differentiation_CRISPRa_compiled_counts.txt  
+INFO  @ Thu, 22 Jun 2023 10:27:23: Processing 1 lines.. 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loaded 1130 records. 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Setting up the visualization module... 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Setting up the visualization module... 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Given sample labels: 1,2 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Converted index: 1 2 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Treatment samples:1,2 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Treatment sample index:1,2 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Given sample labels: 0,3 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Converted index: 0 3 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Control samples:0,3 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Control sample index:0,3 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Initial (total) size factor: 0.9515350966540498 0.9811010814604583 1.0654914970963387 1.0088072461783204 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Median factor: 0.9538452929964182 0.9801259613694935 1.0598852319670442 1.0025250564350783 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Final size factor: 0.9538452929964182 0.9801259613694935 1.0598852319670442 1.0025250564350783 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Detecting outliers from variance estimation.. Avg read count:[841.8193557231834], Var: [31320.426948159195] 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Skipping 2 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: Adjusted model: 1.0724395334044705	3.287250981728296 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: lower test FDR cutoff: 0.27079646017699116 
+DEBUG @ Thu, 22 Jun 2023 10:27:23: higher test FDR cutoff: 0.26902654867256637 
+INFO  @ Thu, 22 Jun 2023 10:27:23: Running command: RRA -i Diff_CRISPRa_output/Diff_CRISPRa.plow.txt -o Diff_CRISPRa_output/Diff_CRISPRa.gene.low.txt -p 0.27079646017699116 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:27:25: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:27:25:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:27:25:    
+INFO  @ Thu, 22 Jun 2023 10:27:25: End command message. 
+INFO  @ Thu, 22 Jun 2023 10:27:25: Running command: RRA -i Diff_CRISPRa_output/Diff_CRISPRa.phigh.txt -o Diff_CRISPRa_output/Diff_CRISPRa.gene.high.txt -p 0.26902654867256637 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:27:26: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:27:26:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:27:26:    
+INFO  @ Thu, 22 Jun 2023 10:27:26: End command message. 
+DEBUG @ Thu, 22 Jun 2023 10:27:26: Sorting the merged items by negative selection... 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Loading top 10 genes from Diff_CRISPRa_output/Diff_CRISPRa.gene.low.txt: NFATC1,SLC24A4,FLT1,NLRP3,PILRA,VLDLR,CLDN7,CD300A,Non,TYRO3 
+DEBUG @ Thu, 22 Jun 2023 10:27:26: Column index:3 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Loading top 10 genes from Diff_CRISPRa_output/Diff_CRISPRa.gene.high.txt: FCGR2C,TGFBR3,P2RY13,CD86,CLEC2B,C1QC,IL10,PTPRC,CLEC2D,GRN 
+DEBUG @ Thu, 22 Jun 2023 10:27:26: Column index:9 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Running command: rm Diff_CRISPRa_output/Diff_CRISPRa.plow.txt 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Running command: rm Diff_CRISPRa_output/Diff_CRISPRa.phigh.txt 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Running command: rm Diff_CRISPRa_output/Diff_CRISPRa.gene.low.txt 
+INFO  @ Thu, 22 Jun 2023 10:27:26: Running command: rm Diff_CRISPRa_output/Diff_CRISPRa.gene.high.txt 

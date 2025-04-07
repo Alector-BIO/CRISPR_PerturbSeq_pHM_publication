@@ -1,0 +1,73 @@
+INFO  @ Thu, 22 Jun 2023 10:47:09: Parameters: /Users/rwang/miniconda3/bin/mageck test -k SurfaceTREM2_CRISPRi_compiled_counts.txt -t 1,2 -c 0,3 -n TREM2_CRISPRi_output/TREM2_CRISPRi 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loading count table from SurfaceTREM2_CRISPRi_compiled_counts.txt  
+INFO  @ Thu, 22 Jun 2023 10:47:09: Processing 1 lines.. 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loaded 1130 records. 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Setting up the visualization module... 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Setting up the visualization module... 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Given sample labels: 1,2 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Converted index: 1 2 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Treatment samples:1,2 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Treatment sample index:1,2 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Given sample labels: 0,3 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Converted index: 0 3 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Control samples:0,3 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Control sample index:0,3 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Initial (total) size factor: 0.9276918067657899 1.1966108701777114 0.961017140911595 0.9562075357756816 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Median factor: 0.9294744401104312 1.1966717561213138 0.9429503509540551 0.9473637078409561 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Final size factor: 0.9294744401104312 1.1966717561213138 0.9429503509540551 0.9473637078409561 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Detecting outliers from variance estimation.. Avg read count:[792.2028835464405], Var: [40629.50974152438] 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Skipping 7 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: Adjusted model: 1.5830396641357203	0 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: lower test FDR cutoff: 0.11238938053097346 
+DEBUG @ Thu, 22 Jun 2023 10:47:09: higher test FDR cutoff: 0.11858407079646018 
+INFO  @ Thu, 22 Jun 2023 10:47:09: Running command: RRA -i TREM2_CRISPRi_output/TREM2_CRISPRi.plow.txt -o TREM2_CRISPRi_output/TREM2_CRISPRi.gene.low.txt -p 0.11238938053097346 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:47:10: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:47:10:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:47:10:    
+INFO  @ Thu, 22 Jun 2023 10:47:10: End command message. 
+INFO  @ Thu, 22 Jun 2023 10:47:10: Running command: RRA -i TREM2_CRISPRi_output/TREM2_CRISPRi.phigh.txt -o TREM2_CRISPRi_output/TREM2_CRISPRi.gene.high.txt -p 0.11858407079646018 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:47:11: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:47:11:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:47:11:    
+INFO  @ Thu, 22 Jun 2023 10:47:11: End command message. 
+DEBUG @ Thu, 22 Jun 2023 10:47:11: Sorting the merged items by negative selection... 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Loading top 10 genes from TREM2_CRISPRi_output/TREM2_CRISPRi.gene.low.txt: TREM2,TYROBP,SPI1,FCGR2A,SIGLEC9,GPR141,PTPRC,LRP1,CD226,CD48 
+DEBUG @ Thu, 22 Jun 2023 10:47:11: Column index:3 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Loading top 10 genes from TREM2_CRISPRi_output/TREM2_CRISPRi.gene.high.txt: SELPLG,IRF8,TYRO3,DPYD,CD37,ADGRG1,PLCB3,NFATC2,GRN,CD300A 
+DEBUG @ Thu, 22 Jun 2023 10:47:11: Column index:9 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Running command: rm TREM2_CRISPRi_output/TREM2_CRISPRi.plow.txt 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Running command: rm TREM2_CRISPRi_output/TREM2_CRISPRi.phigh.txt 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Running command: rm TREM2_CRISPRi_output/TREM2_CRISPRi.gene.low.txt 
+INFO  @ Thu, 22 Jun 2023 10:47:11: Running command: rm TREM2_CRISPRi_output/TREM2_CRISPRi.gene.high.txt 

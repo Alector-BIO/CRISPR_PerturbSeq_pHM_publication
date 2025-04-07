@@ -1,0 +1,73 @@
+INFO  @ Tue, 20 Jun 2023 14:40:43: Parameters: /Users/rwang/miniconda3/bin/mageck test -k BafilomycinA1_CRISPRi_compiled_counts.txt -t 1,3 -c 0,2 -n BafA1_CRISPRi_output/BafA1_CRISPRi 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loading count table from BafilomycinA1_CRISPRi_compiled_counts.txt  
+INFO  @ Tue, 20 Jun 2023 14:40:43: Processing 1 lines.. 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loaded 1130 records. 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Setting up the visualization module... 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Setting up the visualization module... 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Given sample labels: 1,3 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Converted index: 1 3 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Treatment samples:1,3 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Treatment sample index:1,3 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Given sample labels: 0,2 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Converted index: 0 2 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Control samples:0,2 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Control sample index:0,2 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Initial (total) size factor: 1.2313357701970957 0.892601107675044 0.8543638810425611 1.1147139848339909 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Median factor: 1.215836037707597 0.8806511470746681 0.844722367083204 1.105624701950833 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Final size factor: 1.215836037707597 0.8806511470746681 0.844722367083204 1.105624701950833 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Detecting outliers from variance estimation.. Avg read count:[704.609820899729], Var: [19289.597280336187] 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Skipping 3 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: Adjusted model: 1.3941629052555362	0 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: lower test FDR cutoff: 0.10442477876106195 
+DEBUG @ Tue, 20 Jun 2023 14:40:43: higher test FDR cutoff: 0.11769911504424779 
+INFO  @ Tue, 20 Jun 2023 14:40:43: Running command: RRA -i BafA1_CRISPRi_output/BafA1_CRISPRi.plow.txt -o BafA1_CRISPRi_output/BafA1_CRISPRi.gene.low.txt -p 0.10442477876106195 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:40:44: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:40:44:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:40:44:    
+INFO  @ Tue, 20 Jun 2023 14:40:44: End command message. 
+INFO  @ Tue, 20 Jun 2023 14:40:44: Running command: RRA -i BafA1_CRISPRi_output/BafA1_CRISPRi.phigh.txt -o BafA1_CRISPRi_output/BafA1_CRISPRi.gene.high.txt -p 0.11769911504424779 --skip-gene NA --skip-gene na  
+INFO  @ Tue, 20 Jun 2023 14:40:45: Command message: 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Welcome to RRA v 0.5.9. 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Skipping gene NA for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Skipping gene na for permutation ... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Reading input file... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Computing lo-values for each group... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Computing false discovery rate... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Permuting genes with 5 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Permuting genes with 100 sgRNAs... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Number of genes under FDR adjustment: 207 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   Saving to output file... 
+INFO  @ Tue, 20 Jun 2023 14:40:45:   RRA completed. 
+INFO  @ Tue, 20 Jun 2023 14:40:45:    
+INFO  @ Tue, 20 Jun 2023 14:40:45: End command message. 
+DEBUG @ Tue, 20 Jun 2023 14:40:45: Sorting the merged items by negative selection... 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Loading top 10 genes from BafA1_CRISPRi_output/BafA1_CRISPRi.gene.low.txt: P2RY6,CSF2RB,CD300LB,MS4A6A,TMEM106A,CLEC2B,FPR2,PTPRE,IL6R,EPHA1 
+DEBUG @ Tue, 20 Jun 2023 14:40:45: Column index:3 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Loading top 10 genes from BafA1_CRISPRi_output/BafA1_CRISPRi.gene.high.txt: LILRA5,SLC24A4,TARDBP,RPL11,VCP,ITGAL,SIRPB1,TREML4,NLRP3,IFNGR2 
+DEBUG @ Tue, 20 Jun 2023 14:40:45: Column index:9 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Running command: rm BafA1_CRISPRi_output/BafA1_CRISPRi.plow.txt 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Running command: rm BafA1_CRISPRi_output/BafA1_CRISPRi.phigh.txt 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Running command: rm BafA1_CRISPRi_output/BafA1_CRISPRi.gene.low.txt 
+INFO  @ Tue, 20 Jun 2023 14:40:45: Running command: rm BafA1_CRISPRi_output/BafA1_CRISPRi.gene.high.txt 

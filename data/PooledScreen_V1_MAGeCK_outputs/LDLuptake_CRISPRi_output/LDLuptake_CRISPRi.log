@@ -1,0 +1,73 @@
+INFO  @ Thu, 22 Jun 2023 10:33:26: Parameters: /Users/rwang/miniconda3/bin/mageck test -k LDLuptake_CRISPRi_compiled_counts.txt -t 1,4 -c 0,3 -n LDLuptake_CRISPRi_output/LDL_CRISPRi 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loading count table from LDLuptake_CRISPRi_compiled_counts.txt  
+INFO  @ Thu, 22 Jun 2023 10:33:26: Processing 1 lines.. 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loaded 1130 records. 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Setting up the visualization module... 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Setting up the visualization module... 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Given sample labels: 1,4 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Converted index: 1 4 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Treatment samples:1,4 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Treatment sample index:1,4 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Given sample labels: 0,3 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Converted index: 0 3 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Control samples:0,3 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Control sample index:0,3 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Initial (total) size factor: 0.9917106094202964 0.9493676426610119 0.956963932496269 1.1193982150195572 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Median factor: 0.9717011042769644 0.9661483153136999 0.9388352408331384 1.1335695175574314 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Final size factor: 0.9717011042769644 0.9661483153136999 0.9388352408331384 1.1335695175574314 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Detecting outliers from variance estimation.. Avg read count:[1332.3436622251043], Var: [693635.1677027037] 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Skipping 6 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: Adjusted model: 2.442094678668364	0 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: lower test FDR cutoff: 0.9849557522123894 
+DEBUG @ Thu, 22 Jun 2023 10:33:26: higher test FDR cutoff: 0.01 
+INFO  @ Thu, 22 Jun 2023 10:33:26: Running command: RRA -i LDLuptake_CRISPRi_output/LDL_CRISPRi.plow.txt -o LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.low.txt -p 0.5 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:33:28: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:33:28:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:33:28:    
+INFO  @ Thu, 22 Jun 2023 10:33:28: End command message. 
+INFO  @ Thu, 22 Jun 2023 10:33:28: Running command: RRA -i LDLuptake_CRISPRi_output/LDL_CRISPRi.phigh.txt -o LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.high.txt -p 0.01 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:33:29: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:33:29:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:33:29:    
+INFO  @ Thu, 22 Jun 2023 10:33:29: End command message. 
+DEBUG @ Thu, 22 Jun 2023 10:33:29: Sorting the merged items by negative selection... 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Loading top 10 genes from LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.low.txt: LDLR,TREML2,CCR2,SCARB1,IL6R,AIF1,SELL,CSF3R,PILRA,SIRPB1 
+DEBUG @ Thu, 22 Jun 2023 10:33:29: Column index:3 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Loading top 10 genes from LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.high.txt: SQSTM1,MERTK,FCGR2A,CLECL1,ITGB3,CEMIP2,CLEC2B,CHRNE,S100A4,TREM1 
+DEBUG @ Thu, 22 Jun 2023 10:33:29: Column index:9 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Running command: rm LDLuptake_CRISPRi_output/LDL_CRISPRi.plow.txt 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Running command: rm LDLuptake_CRISPRi_output/LDL_CRISPRi.phigh.txt 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Running command: rm LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.low.txt 
+INFO  @ Thu, 22 Jun 2023 10:33:29: Running command: rm LDLuptake_CRISPRi_output/LDL_CRISPRi.gene.high.txt 

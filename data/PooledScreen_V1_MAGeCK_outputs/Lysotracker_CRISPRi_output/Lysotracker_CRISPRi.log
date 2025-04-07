@@ -1,0 +1,73 @@
+INFO  @ Wed, 25 Oct 2023 14:00:18: Parameters: /Users/rwang/miniconda3/bin/mageck test -k CRISPRi_Lysotracker_counts_subset.txt -t 0,3 -c 1,2 -n Lysotracker_CRISPRi_output/Lysotracker_CRISPRi 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loading count table from CRISPRi_Lysotracker_counts_subset.txt  
+INFO  @ Wed, 25 Oct 2023 14:00:18: Processing 1 lines.. 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loaded 1120 records. 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Setting up the visualization module... 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Setting up the visualization module... 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Given sample labels: 0,3 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Converted index: 0 3 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Treatment samples:0,3 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Treatment sample index:0,3 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Given sample labels: 1,2 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Converted index: 1 2 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Control samples:1,2 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Control sample index:1,2 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Initial (total) size factor: 0.940624118721637 1.1769701716488785 0.8536832288041752 1.0918911725335763 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Median factor: 0.9395476363688264 1.1750988074039042 0.8410591935977888 1.0760170779781386 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Final size factor: 0.9395476363688264 1.1750988074039042 0.8410591935977888 1.0760170779781386 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Detecting outliers from variance estimation.. Avg read count:[985.6229310383839], Var: [114119.00119952323] 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Skipping 2 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: Adjusted model: 1.722695249975381	0 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: lower test FDR cutoff: 0.038392857142857145 
+DEBUG @ Wed, 25 Oct 2023 14:00:18: higher test FDR cutoff: 0.05267857142857143 
+INFO  @ Wed, 25 Oct 2023 14:00:18: Running command: RRA -i Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.plow.txt -o Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.low.txt -p 0.05 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 25 Oct 2023 14:00:19: Command message: 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Skipping gene na for permutation ... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Reading input file... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Summary: 1120 sgRNAs, 205 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Computing lo-values for each group... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Computing false discovery rate... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Increase the number of permutations to 488 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Number of genes under FDR adjustment: 205 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Saving to output file... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   RRA completed. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:    
+INFO  @ Wed, 25 Oct 2023 14:00:19: End command message. 
+INFO  @ Wed, 25 Oct 2023 14:00:19: Running command: RRA -i Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.phigh.txt -o Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.high.txt -p 0.05267857142857143 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 25 Oct 2023 14:00:19: Command message: 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Skipping gene na for permutation ... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Reading input file... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Summary: 1120 sgRNAs, 205 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Computing lo-values for each group... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Computing false discovery rate... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Increase the number of permutations to 488 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Number of genes under FDR adjustment: 205 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   Saving to output file... 
+INFO  @ Wed, 25 Oct 2023 14:00:19:   RRA completed. 
+INFO  @ Wed, 25 Oct 2023 14:00:19:    
+INFO  @ Wed, 25 Oct 2023 14:00:19: End command message. 
+DEBUG @ Wed, 25 Oct 2023 14:00:19: Sorting the merged items by negative selection... 
+INFO  @ Wed, 25 Oct 2023 14:00:19: Loading top 10 genes from Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.low.txt: CD37,LSR,FCER1G,LYVE1,CD300LF,TLR2,IL6R,FPR2,CD48,IL1R2 
+DEBUG @ Wed, 25 Oct 2023 14:00:19: Column index:3 
+INFO  @ Wed, 25 Oct 2023 14:00:20: Loading top 10 genes from Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.high.txt: VCP,ABCA7,CD226,PTPRE,ABCA1,TMEM106B,HAVCR1,NPC2,NLRC4,SPP1 
+DEBUG @ Wed, 25 Oct 2023 14:00:20: Column index:9 
+INFO  @ Wed, 25 Oct 2023 14:00:20: Running command: rm Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.plow.txt 
+INFO  @ Wed, 25 Oct 2023 14:00:20: Running command: rm Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.phigh.txt 
+INFO  @ Wed, 25 Oct 2023 14:00:20: Running command: rm Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.low.txt 
+INFO  @ Wed, 25 Oct 2023 14:00:20: Running command: rm Lysotracker_CRISPRi_output/Lysotracker_CRISPRi.gene.high.txt 

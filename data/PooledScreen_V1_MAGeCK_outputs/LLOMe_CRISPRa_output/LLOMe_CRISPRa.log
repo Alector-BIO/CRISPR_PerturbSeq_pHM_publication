@@ -1,0 +1,72 @@
+INFO  @ Thu, 22 Jun 2023 10:35:55: Parameters: /Users/rwang/miniconda3/bin/mageck test -k LLOMe_CRISPRa_compiled_counts.txt -t 0,1 -c 2,3 -n LLOMe_CRISPRa_output/LLOMe_CRISPRa 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loading count table from LLOMe_CRISPRa_compiled_counts.txt  
+INFO  @ Thu, 22 Jun 2023 10:35:55: Processing 1 lines.. 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loaded 1130 records. 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Setting up the visualization module... 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Setting up the visualization module... 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Given sample labels: 0,1 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Converted index: 0 1 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Treatment samples:0,1 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Treatment sample index:0,1 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Given sample labels: 2,3 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Converted index: 2 3 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Control samples:2,3 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Control sample index:2,3 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Initial (total) size factor: 1.1223280621065772 0.8909688851959328 0.9399509598387242 1.0837336117879104 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Median factor: 1.1196178510024979 0.8850954664419651 0.9394346162527405 1.0789839815540412 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Final size factor: 1.1196178510024979 0.8850954664419651 0.9394346162527405 1.0789839815540412 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Detecting outliers from variance estimation.. Avg read count:[732.9208655282612], Var: [15265.039819872654] 
+DEBUG @ Thu, 22 Jun 2023 10:35:55: Adjusted model: 2.228020949152657	0 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 22 Jun 2023 10:35:55: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 22 Jun 2023 10:35:56: lower test FDR cutoff: 0.25398230088495577 
+DEBUG @ Thu, 22 Jun 2023 10:35:56: higher test FDR cutoff: 0.01 
+INFO  @ Thu, 22 Jun 2023 10:35:56: Running command: RRA -i LLOMe_CRISPRa_output/LLOMe_CRISPRa.plow.txt -o LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.low.txt -p 0.25398230088495577 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:35:57: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:35:57:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:35:57:    
+INFO  @ Thu, 22 Jun 2023 10:35:57: End command message. 
+INFO  @ Thu, 22 Jun 2023 10:35:57: Running command: RRA -i LLOMe_CRISPRa_output/LLOMe_CRISPRa.phigh.txt -o LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.high.txt -p 0.01 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:35:58: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:35:58:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:35:58:    
+INFO  @ Thu, 22 Jun 2023 10:35:58: End command message. 
+DEBUG @ Thu, 22 Jun 2023 10:35:58: Sorting the merged items by negative selection... 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Loading top 10 genes from LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.low.txt: LRRK2,NLRP3,FCGR2A,MMP9,CD300A,LTBR,IL1R2,ICAM3,CD86,EPHA1 
+DEBUG @ Thu, 22 Jun 2023 10:35:58: Column index:3 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Loading top 10 genes from LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.high.txt: CD40,PTPRE,FCER1G,TGFBR2,IRF8,CTSB,LDLR,ITGB3,CD68,TMEM106B 
+DEBUG @ Thu, 22 Jun 2023 10:35:58: Column index:9 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Running command: rm LLOMe_CRISPRa_output/LLOMe_CRISPRa.plow.txt 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Running command: rm LLOMe_CRISPRa_output/LLOMe_CRISPRa.phigh.txt 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Running command: rm LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.low.txt 
+INFO  @ Thu, 22 Jun 2023 10:35:58: Running command: rm LLOMe_CRISPRa_output/LLOMe_CRISPRa.gene.high.txt 

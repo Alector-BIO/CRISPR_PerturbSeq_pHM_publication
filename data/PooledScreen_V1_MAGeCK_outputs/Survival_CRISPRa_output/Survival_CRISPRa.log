@@ -1,0 +1,72 @@
+INFO  @ Wed, 12 Jul 2023 15:18:57: Parameters: /Users/rwang/miniconda3/bin/mageck test -k Survival_CRISPRa_compiled_counts.txt -t 2,3 -c 0,1 -n Survival_CRISPRa_output/Survival_CRISPRa 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loading count table from Survival_CRISPRa_compiled_counts.txt  
+INFO  @ Wed, 12 Jul 2023 15:18:57: Processing 1 lines.. 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loaded 1130 records. 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Setting up the visualization module... 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Setting up the visualization module... 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Given sample labels: 2,3 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Converted index: 2 3 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Treatment samples:2,3 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Treatment sample index:2,3 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Given sample labels: 0,1 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Converted index: 0 1 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Control samples:0,1 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Control sample index:0,1 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Initial (total) size factor: 0.8884350514422591 1.0148167148779061 1.032131829768776 1.0867708010418586 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Median factor: 0.8811978369228574 1.0110959028110857 1.0306006443561544 1.0779015526661064 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Final size factor: 0.8811978369228574 1.0110959028110857 1.0306006443561544 1.0779015526661064 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Detecting outliers from variance estimation.. Avg read count:[869.6845036666391], Var: [8231.753181761556] 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: Adjusted model: 1.3905901875055278	0 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: lower test FDR cutoff: 0.19557522123893806 
+DEBUG @ Wed, 12 Jul 2023 15:18:57: higher test FDR cutoff: 0.17964601769911503 
+INFO  @ Wed, 12 Jul 2023 15:18:57: Running command: RRA -i Survival_CRISPRa_output/Survival_CRISPRa.plow.txt -o Survival_CRISPRa_output/Survival_CRISPRa.gene.low.txt -p 0.19557522123893806 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 12 Jul 2023 15:18:58: Command message: 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Skipping gene na for permutation ... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Reading input file... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Computing lo-values for each group... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Computing false discovery rate... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Number of genes under FDR adjustment: 207 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   Saving to output file... 
+INFO  @ Wed, 12 Jul 2023 15:18:58:   RRA completed. 
+INFO  @ Wed, 12 Jul 2023 15:18:58:    
+INFO  @ Wed, 12 Jul 2023 15:18:58: End command message. 
+INFO  @ Wed, 12 Jul 2023 15:18:58: Running command: RRA -i Survival_CRISPRa_output/Survival_CRISPRa.phigh.txt -o Survival_CRISPRa_output/Survival_CRISPRa.gene.high.txt -p 0.17964601769911503 --skip-gene NA --skip-gene na  
+INFO  @ Wed, 12 Jul 2023 15:18:59: Command message: 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Welcome to RRA v 0.5.9. 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Skipping gene NA for permutation ... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Skipping gene na for permutation ... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Reading input file... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Computing lo-values for each group... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Computing false discovery rate... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Permuting genes with 5 sgRNAs... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Permuting genes with 100 sgRNAs... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Number of genes under FDR adjustment: 207 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   Saving to output file... 
+INFO  @ Wed, 12 Jul 2023 15:18:59:   RRA completed. 
+INFO  @ Wed, 12 Jul 2023 15:18:59:    
+INFO  @ Wed, 12 Jul 2023 15:18:59: End command message. 
+DEBUG @ Wed, 12 Jul 2023 15:18:59: Sorting the merged items by negative selection... 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Loading top 10 genes from Survival_CRISPRa_output/Survival_CRISPRa.gene.low.txt: CD86,TGFBR3,LPL,GRN,P2RY13,SIRPA,GBA,IFNGR2,CLEC2D,LRP1B 
+DEBUG @ Wed, 12 Jul 2023 15:18:59: Column index:3 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Loading top 10 genes from Survival_CRISPRa_output/Survival_CRISPRa.gene.high.txt: AXL,CLDN7,NFATC1,LTBR,FLT1,CSF1R,PILRA,TYRO3,FPR3,C1QA 
+DEBUG @ Wed, 12 Jul 2023 15:18:59: Column index:9 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Running command: rm Survival_CRISPRa_output/Survival_CRISPRa.plow.txt 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Running command: rm Survival_CRISPRa_output/Survival_CRISPRa.phigh.txt 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Running command: rm Survival_CRISPRa_output/Survival_CRISPRa.gene.low.txt 
+INFO  @ Wed, 12 Jul 2023 15:18:59: Running command: rm Survival_CRISPRa_output/Survival_CRISPRa.gene.high.txt 

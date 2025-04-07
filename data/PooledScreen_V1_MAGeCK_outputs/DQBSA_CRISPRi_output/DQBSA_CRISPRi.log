@@ -1,0 +1,73 @@
+INFO  @ Thu, 22 Jun 2023 10:30:43: Parameters: /Users/rwang/miniconda3/bin/mageck test -k DQBSA_CRISPRi_compiled_counts.txt -t 1,3 -c 0,2 -n DQBSA_CRISPRi_output/DQBSA_CRISPRi 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Welcome to MAGeCK v0.5.9.4. Command: test 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loading count table from DQBSA_CRISPRi_compiled_counts.txt  
+INFO  @ Thu, 22 Jun 2023 10:30:43: Processing 1 lines.. 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Parsing error in line 1 (usually the header line). Skip this line. 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loaded 1130 records. 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/test_report.Rmd. 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Setting up the visualization module... 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loading R template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template_indvgene.RTemplate. 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Loading Rnw template file: /Users/rwang/miniconda3/lib/python3.10/site-packages/mageck/plot_template.Rnw. 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Setting up the visualization module... 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Given sample labels: 1,3 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Converted index: 1 3 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Treatment samples:1,3 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Treatment sample index:1,3 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Given sample labels: 0,2 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Converted index: 0 2 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Control samples:0,2 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Control sample index:0,2 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Initial (total) size factor: 1.1547341082482296 1.0032826107080044 1.0466054293520166 0.8461656262104874 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Median factor: 1.1771661486501788 1.1666701938555881 0.9897815504634336 0.7454160231348016 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Final size factor: 1.1771661486501788 1.1666701938555881 0.9897815504634336 0.7454160231348016 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Detecting outliers from variance estimation.. Avg read count:[1093.5841425936735], Var: [1742553.0846235994] 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Skipping 14 sgRNAs from variance calculation because of their extreme high counts (> 4* STD (mean counts) ). 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: Adjusted model: 2.841023121877787	0 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Before RRA, 0 sgRNAs are removed with zero counts in both group(s). 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Use qnorm to reversely calculate sgRNA scores ... 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: lower test FDR cutoff: 0.9929203539823008 
+DEBUG @ Thu, 22 Jun 2023 10:30:43: higher test FDR cutoff: 0.01 
+INFO  @ Thu, 22 Jun 2023 10:30:43: Running command: RRA -i DQBSA_CRISPRi_output/DQBSA_CRISPRi.plow.txt -o DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.low.txt -p 0.5 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:30:45: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:30:45:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:30:45:    
+INFO  @ Thu, 22 Jun 2023 10:30:45: End command message. 
+INFO  @ Thu, 22 Jun 2023 10:30:45: Running command: RRA -i DQBSA_CRISPRi_output/DQBSA_CRISPRi.phigh.txt -o DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.high.txt -p 0.01 --skip-gene NA --skip-gene na  
+INFO  @ Thu, 22 Jun 2023 10:30:46: Command message: 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Welcome to RRA v 0.5.9. 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Skipping gene NA for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Skipping gene na for permutation ... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Reading input file... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Summary: 1130 sgRNAs, 207 genes, 1 lists; skipped sgRNAs:0 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Computing lo-values for each group... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Computing false discovery rate... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Increase the number of permutations to 484 to get precise p values. To avoid this, use the --permutation option. 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Permuting genes with 5 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Permuting genes with 100 sgRNAs... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Number of genes under FDR adjustment: 207 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   Saving to output file... 
+INFO  @ Thu, 22 Jun 2023 10:30:46:   RRA completed. 
+INFO  @ Thu, 22 Jun 2023 10:30:46:    
+INFO  @ Thu, 22 Jun 2023 10:30:46: End command message. 
+DEBUG @ Thu, 22 Jun 2023 10:30:46: Sorting the merged items by negative selection... 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Loading top 10 genes from DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.low.txt: FCER1G,SCARB1,SPI1,AXL,SLC24A4,LDLR,IFNGR2,TYROBP,IL15RA,CD86 
+DEBUG @ Thu, 22 Jun 2023 10:30:46: Column index:3 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Loading top 10 genes from DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.high.txt: NFATC2,LPAR2,CD226,FCGR3B,CSF1R,SQSTM1,CTLA4,Non,IL6R,CLDN7 
+DEBUG @ Thu, 22 Jun 2023 10:30:46: Column index:9 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Running command: rm DQBSA_CRISPRi_output/DQBSA_CRISPRi.plow.txt 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Running command: rm DQBSA_CRISPRi_output/DQBSA_CRISPRi.phigh.txt 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Running command: rm DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.low.txt 
+INFO  @ Thu, 22 Jun 2023 10:30:46: Running command: rm DQBSA_CRISPRi_output/DQBSA_CRISPRi.gene.high.txt 
